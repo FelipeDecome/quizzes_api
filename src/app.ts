@@ -2,11 +2,11 @@ import 'reflect-metadata';
 
 import express, { json, NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
-
-import routes from './infra/http/routes';
+import AppError from './errors/AppError';
 
 import './infra/typeorm';
-import AppError from './errors/AppError';
+
+import routes from './infra/http/routes';
 
 const app = express();
 
