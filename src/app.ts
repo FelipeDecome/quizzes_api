@@ -3,9 +3,9 @@ import 'reflect-metadata';
 import express, { json, NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 
-import routes from './routes';
+import routes from './infra/http/routes';
 
-import './typeorm';
+import './infra/typeorm';
 import AppError from './errors/AppError';
 
 const app = express();

@@ -1,5 +1,5 @@
 import ICreateQuizDTO from '../dtos/ICreateQuizDTO';
-import Quiz from '../entities/Quiz';
+import Quiz from '../infra/typeorm/entities/Quiz';
 
 export default interface IQuizzesRepository {
   create(data: ICreateQuizDTO): Promise<Quiz>;
