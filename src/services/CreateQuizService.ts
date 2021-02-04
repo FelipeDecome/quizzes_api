@@ -5,7 +5,7 @@ import IQuizzesRepository from '../repositories/IQuizzesRepository';
 
 interface IAnswer {
   text: string;
-  is_correct: boolean;
+  is_correct?: boolean;
 }
 
 interface IQuestion {
@@ -22,13 +22,17 @@ export default class CreateQuizService {
   constructor(private quizzesRepository: IQuizzesRepository) {}
 
   public async execute({ title, questions }: IRequest): Promise<Quiz> {
+    if (questions.length < 4)
+      throw new AppError('Quizzes must have at least 4 question');
+
     questions.forEach(question => {
       const { answers } = question;
 
-      if (answers.length < 3 && answers.length > 4)
+      if (answers.length < 3 || answers.length > 4) {
         throw new AppError(
           'Questions must have at least 3 possible answers and at maximun 4.',
         );
+      }
 
       const correctAnswer = answers.filter(answer => answer.is_correct);
 
@@ -42,9 +46,17 @@ export default class CreateQuizService {
     if (title.length < 16)
       throw new AppError('Title must have at least 16 characters.');
 
+    const parseQuestions = questions.map(question => ({
+      text: question.text,
+      answers: question.answers.map(answer => ({
+        text: answer.text,
+        is_correct: answer.is_correct || false,
+      })),
+    }));
+
     const quiz = await this.quizzesRepository.create({
       title,
-      questions,
+      questions: parseQuestions,
     });
 
     return quiz;
