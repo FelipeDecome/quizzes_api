@@ -1,19 +1,21 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
 import express, { json, NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
+import routes from './infra/http/routes';
+import rateLimiter from './rateLimiter';
 
 import AppError from './errors/AppError';
 
 import './infra/typeorm';
 
-import routes from './infra/http/routes';
-
 const app = express();
 
 app.use(json());
 app.use(cors());
+app.use(rateLimiter);
 
 app.use(routes);
 
