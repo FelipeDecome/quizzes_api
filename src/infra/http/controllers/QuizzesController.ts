@@ -8,11 +8,11 @@ const quizzesRepository = new QuizzesRepository();
 
 export default class QuizzesController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { title, questions } = request.body;
+    const { title, questions, email } = request.body;
 
     const createQuizService = new CreateQuizService(quizzesRepository);
 
-    const quiz = await createQuizService.execute({ title, questions });
+    const quiz = await createQuizService.execute({ title, questions, email });
 
     return response.status(201).json(quiz);
   }

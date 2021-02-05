@@ -15,13 +15,18 @@ interface IQuestion {
 
 interface IRequest {
   title: string;
+  creator_email: string;
   questions: IQuestion[];
 }
 
 export default class CreateQuizService {
   constructor(private quizzesRepository: IQuizzesRepository) {}
 
-  public async execute({ title, questions }: IRequest): Promise<Quiz> {
+  public async execute({
+    title,
+    questions,
+    creator_email,
+  }: IRequest): Promise<Quiz> {
     if (questions.length < 4)
       throw new AppError('Quizzes must have at least 4 question');
 
@@ -57,6 +62,7 @@ export default class CreateQuizService {
     const quiz = await this.quizzesRepository.create({
       title,
       questions: parseQuestions,
+      creator_email,
     });
 
     return quiz;

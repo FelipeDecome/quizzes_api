@@ -16,6 +16,11 @@ export default class Quiz {
   @Column()
   title: string;
 
+  @Column({
+    unique: true,
+  })
+  creator_email: string;
+
   @OneToMany(() => Question, questions => questions.quiz, {
     cascade: ['insert'],
   })

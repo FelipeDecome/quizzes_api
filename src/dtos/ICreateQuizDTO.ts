@@ -10,5 +10,6 @@ interface IQuestion {
 
 export default interface ICreateQuizDTO {
   title: string;
+  creator_email: string;
   questions: IQuestion[];
 }

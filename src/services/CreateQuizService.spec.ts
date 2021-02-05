@@ -30,6 +30,7 @@ describe('CreateQuiz', () => {
   it('should be able to create a quiz', async () => {
     const quiz = await createQuiz.execute({
       title: 'quiz_title_with_16_characters',
+      creator_email: 'creator_email',
       questions: [
         correctQuestion,
         correctQuestion,
@@ -45,6 +46,7 @@ describe('CreateQuiz', () => {
     await expect(
       createQuiz.execute({
         title: 'less_than_16',
+        creator_email: 'creator_email',
         questions: [
           correctQuestion,
           correctQuestion,
@@ -59,6 +61,7 @@ describe('CreateQuiz', () => {
     await expect(
       createQuiz.execute({
         title: 'quiz_title_with_16_characters',
+        creator_email: 'creator_email',
         questions: [correctQuestion, correctQuestion, correctQuestion],
       }),
     ).rejects.toBeInstanceOf(AppError);
@@ -69,6 +72,7 @@ describe('CreateQuiz', () => {
     await expect(
       createQuiz.execute({
         title: 'quiz_title_with_16_characters',
+        creator_email: 'creator_email',
         questions: [
           {
             text: 'question_text',
@@ -93,6 +97,7 @@ describe('CreateQuiz', () => {
     await expect(
       createQuiz.execute({
         title: 'quiz_title_with_16_characters',
+        creator_email: 'creator_email',
         questions: [
           {
             text: 'question_text',
@@ -126,6 +131,7 @@ describe('CreateQuiz', () => {
     await expect(
       createQuiz.execute({
         title: 'quiz_title_with_16_characters',
+        creator_email: 'creator_email',
         questions: [
           {
             text: 'question_text',
@@ -152,6 +158,7 @@ describe('CreateQuiz', () => {
     await expect(
       createQuiz.execute({
         title: 'quiz_title_with_16_characters',
+        creator_email: 'creator_email',
         questions: [
           {
             text: 'question_text',
