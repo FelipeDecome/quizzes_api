@@ -1,4 +1,4 @@
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 import FakeQuizzesRepository from '../repositories/fakes/FakeQuizzesRepository';
 import FindQuizService from './FindQuizService';
 
@@ -25,7 +25,7 @@ const correctQuestion = {
 
 const quiz = {
   title: 'quiz_title_with_16_characters',
-  email: 'user_email',
+  creator_email: 'creator_email',
   questions: [
     correctQuestion,
     correctQuestion,
