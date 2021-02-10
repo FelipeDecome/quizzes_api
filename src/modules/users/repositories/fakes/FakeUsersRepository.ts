@@ -7,6 +7,12 @@ import IUsersRepository from '../IUsersRepository';
 export default class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
 
+  public async save(user: User): Promise<User> {
+    this.users.push(user);
+
+    return user;
+  }
+
   public async create(data: ICreateUserDTO): Promise<User> {
     const user = new User();
 
