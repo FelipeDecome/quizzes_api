@@ -58,6 +58,16 @@ describe('Update Profile', () => {
     expect(updatedInfo2.email).toEqual('johndoe@example2.com');
   });
 
+  it('should fail if user does not exists', async () => {
+    await expect(
+      updateProfile.execute({
+        user_id: 'non existent user',
+        name: 'John Doe',
+        email: 'johndoe@example.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
   it('should fail if email is already in use', async () => {
     await fakeUsersRepository.create({
       name: 'Johnes Doe',
@@ -74,5 +84,37 @@ describe('Update Profile', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  // Passwords tests
+  it('should be able to update the password', async () => {
+    const updatedInfo = await updateProfile.execute({
+      user_id: user.id,
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'new_password',
+      old_password: 'password',
+    });
+
+    expect(updatedInfo.password).toEqual('new_password');
+  });
+
+  it('should fail if old password does not match or is null', async () => {
+    await expect(
+      updateProfile.execute({
+        user_id: user.id,
+        name: 'John Doe',
+        email: 'johndoe@example.com',
+        password: 'new_password',
+        old_password: 'wrong_old_password',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+
+    await expect(
+      updateProfile.execute({
+        user_id: user.id,
+        name: 'John Doe',
+        email: 'johndoe@example.com',
+        password: 'new_password',
+        old_password: '',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
