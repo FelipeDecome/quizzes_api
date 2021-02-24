@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid';
-
 import ICreateQuizDTO from '@modules/quizzes/dtos/ICreateQuizDTO';
 import Quiz from '@modules/quizzes/infra/typeorm/entities/Quiz';
 import IQuizzesRepository from '../IQuizzesRepository';
@@ -11,7 +9,6 @@ export default class FakeQuizzesRepository implements IQuizzesRepository {
     const quiz = new Quiz();
 
     Object.assign(quiz, {
-      id: uuid(),
       ...data,
     });
 

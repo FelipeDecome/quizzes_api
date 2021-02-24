@@ -1,5 +1,4 @@
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
-import { v4 as uuid } from 'uuid';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '../IUsersRepository';
@@ -17,7 +16,6 @@ export default class FakeUsersRepository implements IUsersRepository {
     const user = new User();
 
     Object.assign(user, {
-      id: uuid(),
       ...data,
       created_at: Date.now(),
       updated_at: Date.now(),

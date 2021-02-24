@@ -7,6 +7,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
+
 import Answer from './Answer';
 import Quiz from './Quiz';
 
@@ -29,4 +31,8 @@ export default class Question {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  constructor() {
+    if (!this.id) this.id = uuid();
+  }
 }

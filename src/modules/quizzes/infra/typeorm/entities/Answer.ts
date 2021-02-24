@@ -6,6 +6,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
+
 import Question from './Question';
 
 @Entity()
@@ -27,4 +29,8 @@ export default class Answer {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  constructor() {
+    if (!this.id) this.id = uuid();
+  }
 }
