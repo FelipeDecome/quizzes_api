@@ -1,7 +1,6 @@
 {
   "name": "configurando_e_debugando",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/FelipeDecome/configurando_e_debugando.git",
   "author": "Felipe Decome <felipe.decome@hotmail.com>",
   "license": "MIT",
@@ -10,7 +9,7 @@
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore node_modules src/shared/infra/http/server.ts",
     "start": "ts-node -r tsconfig-paths/register src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -24,7 +23,8 @@
     "pg": "^8.5.1",
     "rate-limiter-flexible": "^2.2.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.30",
+    "sqlite3": "^5.0.2",
+    "typeorm": "0.2.29",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
