@@ -25,7 +25,7 @@ const correctQuestion = {
 
 const quiz = {
   title: 'quiz_title_with_16_characters',
-  email: 'user_email',
+  creator_email: 'user_email',
   questions: [
     correctQuestion,
     correctQuestion,
