@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import Redis from 'ioredis';
 import { RateLimiterRedis } from 'rate-limiter-flexible';
-import AppError from './errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 const redisClient = new Redis({
   host: process.env.REDIS_HOST,

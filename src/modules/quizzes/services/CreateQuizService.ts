@@ -1,4 +1,4 @@
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 import Quiz from '../infra/typeorm/entities/Quiz';
 import IQuizzesRepository from '../repositories/IQuizzesRepository';

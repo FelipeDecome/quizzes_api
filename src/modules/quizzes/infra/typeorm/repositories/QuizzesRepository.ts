@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
 
-import ICreateQuizDTO from '../../../dtos/ICreateQuizDTO';
+import ICreateQuizDTO from '@modules/quizzes/dtos/ICreateQuizDTO';
+import IQuizzesRepository from '@modules/quizzes/repositories/IQuizzesRepository';
 import Quiz from '../entities/Quiz';
-import IQuizzesRepository from '../../../repositories/IQuizzesRepository';
 
 export default class QuizzesRepository implements IQuizzesRepository {
   private ormRepository: Repository<Quiz>;
