@@ -4,12 +4,12 @@ import 'dotenv/config';
 import express, { json, NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
-import routes from './infra/http/routes';
-import rateLimiter from './rateLimiter';
 
-import AppError from './errors/AppError';
+import AppError from '@shared/errors/AppError';
+import routes from './routes';
+import rateLimiter from './middlewares/rateLimiter';
 
-import './infra/typeorm';
+import '../typeorm';
 
 const app = express();
 

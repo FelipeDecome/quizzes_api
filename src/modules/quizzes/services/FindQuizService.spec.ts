@@ -1,4 +1,4 @@
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 import FakeQuizzesRepository from '../repositories/fakes/FakeQuizzesRepository';
 import FindQuizService from './FindQuizService';
 

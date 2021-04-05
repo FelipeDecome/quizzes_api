@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import quizzesRouter from './quizzes.routes';
+import quizzesRouter from '@modules/quizzes/infra/http/routes/quizzes.routes';
 
 const routes = Router();
 

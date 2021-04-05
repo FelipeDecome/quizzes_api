@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import QuizzesRepository from '../../typeorm/repositories/QuizzesRepository';
-import CreateQuizService from '../../../services/CreateQuizService';
-import FindQuizService from '../../../services/FindQuizService';
+import QuizzesRepository from '@modules/quizzes/infra/typeorm/repositories/QuizzesRepository';
+import CreateQuizService from '@modules/quizzes/services/CreateQuizService';
+import FindQuizService from '@modules/quizzes/services/FindQuizService';
 
 export default class QuizzesController {
   public async create(request: Request, response: Response): Promise<Response> {
