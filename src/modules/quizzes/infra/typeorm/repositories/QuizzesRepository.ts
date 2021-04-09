@@ -1,6 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
 import IQuizzesRepository from '@modules/quizzes/repositories/IQuizzesRepository';
+import { ICreateQuizDTO } from '@modules/quizzes/dtos/ICreateQuizDTO';
 import Quiz from '../entities/Quiz';
 
 export default class QuizzesRepository implements IQuizzesRepository {
@@ -10,8 +11,10 @@ export default class QuizzesRepository implements IQuizzesRepository {
     this.ormRepository = getRepository(Quiz);
   }
 
-  public async save(data: Quiz): Promise<Quiz> {
-    return this.ormRepository.save(data);
+  public async save(data: ICreateQuizDTO): Promise<Quiz> {
+    const quiz = this.ormRepository.create(data);
+
+    return this.ormRepository.save(quiz);
   }
 
   public async findById(id: string): Promise<Quiz | undefined> {

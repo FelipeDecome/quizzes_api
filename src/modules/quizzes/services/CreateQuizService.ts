@@ -1,7 +1,4 @@
 import AppError from '@shared/errors/AppError';
-import Answer from '../infra/typeorm/entities/Answer';
-import Question from '../infra/typeorm/entities/Question';
-
 import Quiz from '../infra/typeorm/entities/Quiz';
 import IQuizzesRepository from '../repositories/IQuizzesRepository';
 
@@ -53,41 +50,19 @@ export default class CreateQuizService {
     if (title.length < 16)
       throw new AppError('Title must have at least 16 characters.');
 
-    const parsedQuizData = new Quiz();
+    const parsedQuestionsTest = questions.map(question => ({
+      text: question.text,
+      answers: question.answers.map(answer => ({
+        text: answer.text,
+        is_correct: !!answer.is_correct,
+      })),
+    }));
 
-    const parsedQuestions = questions.map(question => {
-      const parsedQuestion = new Question();
-
-      const { text, answers } = question;
-
-      Object.assign(parsedQuestion, {
-        quiz_id: parsedQuizData.id,
-        text,
-        answers: answers.map(answer => {
-          const parsedAnswer = new Answer();
-
-          const { text: answerText, is_correct } = answer;
-
-          Object.assign(parsedAnswer, {
-            question_id: parsedQuestion.id,
-            text: answerText,
-            is_correct: !!is_correct,
-          });
-
-          return parsedAnswer;
-        }),
-      });
-
-      return parsedQuestion;
-    });
-
-    Object.assign(parsedQuizData, {
+    const quiz = await this.quizzesRepository.save({
       title,
       creator_email,
-      questions: parsedQuestions,
+      questions: parsedQuestionsTest,
     });
-
-    const quiz = await this.quizzesRepository.save(parsedQuizData);
 
     return quiz;
   }
