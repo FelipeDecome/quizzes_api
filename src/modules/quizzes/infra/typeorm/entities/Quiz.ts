@@ -1,28 +1,28 @@
+import { v4 as uuid } from 'uuid';
 import {
   Column,
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import Question from './Question';
 
-@Entity()
+@Entity('quizzes')
 export default class Quiz {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column()
   title: string;
 
-  @Column({
-    unique: true,
-  })
+  @Column()
   creator_email: string;
 
   @OneToMany(() => Question, questions => questions.quiz, {
-    cascade: ['insert'],
+    eager: true,
+    cascade: true,
   })
   questions: Question[];
 
@@ -31,4 +31,10 @@ export default class Quiz {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }

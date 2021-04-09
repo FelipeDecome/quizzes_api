@@ -41,7 +41,7 @@ describe('CreateQuiz', () => {
   });
 
   it('should be able to find a quiz', async () => {
-    const { id } = await quizzesRepository.create(quiz);
+    const { id } = await quizzesRepository.save(quiz);
 
     const result = await findQuiz.execute({ id });
 

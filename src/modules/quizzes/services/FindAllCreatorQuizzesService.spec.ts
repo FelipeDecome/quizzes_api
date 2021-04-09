@@ -53,7 +53,7 @@ describe('CreateQuiz', () => {
 
   it('should be able to find all quizzes providing an email', async () => {
     const createdQuizzes = await Promise.all(
-      quizzes.map(async quiz => quizzesRepository.create(quiz)),
+      quizzes.map(async quiz => quizzesRepository.save(quiz)),
     );
 
     const result = await findAllCreatorQuizzes.execute({

@@ -1,16 +1,18 @@
+import { v4 as uuid } from 'uuid';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import Question from './Question';
 
-@Entity()
+@Entity('answers')
 export default class Answer {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column()
@@ -19,7 +21,11 @@ export default class Answer {
   @Column('boolean')
   is_correct: boolean;
 
+  @Column('uuid')
+  question_id: string;
+
   @ManyToOne(() => Question, question => question.answers)
+  @JoinColumn([{ name: 'question_id', referencedColumnName: 'id' }])
   question: Question;
 
   @CreateDateColumn()
@@ -27,4 +33,10 @@ export default class Answer {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }

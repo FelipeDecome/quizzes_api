@@ -8,8 +8,10 @@ interface IQuestion {
   answers: IAnswer[];
 }
 
-export default interface ICreateQuizDTO {
+interface ICreateQuizDTO {
   title: string;
   creator_email: string;
   questions: IQuestion[];
 }
+
+export { ICreateQuizDTO, IQuestion, IAnswer };

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev:server": "tsnd -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts",
+    "dev:server": "tsnd -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest"
   },
@@ -20,7 +20,7 @@
     "pg": "^8.5.1",
     "rate-limiter-flexible": "^2.2.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.30",
+    "typeorm": "^0.2.32",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

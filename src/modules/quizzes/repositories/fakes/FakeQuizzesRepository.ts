@@ -1,17 +1,14 @@
-import { v4 as uuid } from 'uuid';
-
-import ICreateQuizDTO from '@modules/quizzes/dtos/ICreateQuizDTO';
+import { ICreateQuizDTO } from '@modules/quizzes/dtos/ICreateQuizDTO';
 import Quiz from '@modules/quizzes/infra/typeorm/entities/Quiz';
 import IQuizzesRepository from '../IQuizzesRepository';
 
 export default class FakeQuizzesRepository implements IQuizzesRepository {
   private quizzes: Quiz[] = [];
 
-  public async create(data: ICreateQuizDTO): Promise<Quiz> {
+  public async save(data: ICreateQuizDTO): Promise<Quiz> {
     const quiz = new Quiz();
 
     Object.assign(quiz, {
-      id: uuid(),
       ...data,
     });
 

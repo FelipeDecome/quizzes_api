@@ -26,7 +26,7 @@ export default class QuizzesController {
     const quizzesRepository = new QuizzesRepository();
     const findQuizService = new FindQuizService(quizzesRepository);
 
-    const quiz = findQuizService.execute({
+    const quiz = await findQuizService.execute({
       id,
     });
 
