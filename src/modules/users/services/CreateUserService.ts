@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+import { IService } from '@shared/models/IService';
 import { IUser } from '../entities/IUser';
 import { IHashProvider } from '../providers/HashProvider/models/IHashProvider';
 import { IUsersRepository } from '../repositories/IUsersRepository';
@@ -9,7 +10,7 @@ interface IRequest {
   password: string;
 }
 
-class CreateUserService {
+class CreateUserService implements IService<IRequest, IUser> {
   constructor(
     private usersRepository: IUsersRepository,
     private hashProvider: IHashProvider,

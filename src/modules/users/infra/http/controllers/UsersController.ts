@@ -1,7 +1,7 @@
 import { BCryptHashProvider } from '@modules/users/providers/HashProvider/implementations/BCryptHashProvider';
 import { CreateUserService } from '@modules/users/services/CreateUserService';
 import { getUsersRepositoryInstance } from '@modules/users/utils/getUsersRepositoryInstance';
-import { IController } from '@shared/infra/http/models/IController';
+import { IController } from '@shared/models/IController';
 import { Request, Response } from 'express';
 
 class UsersController implements IController {

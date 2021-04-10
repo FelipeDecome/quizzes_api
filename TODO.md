@@ -1,7 +1,7 @@
 # Requiriments of the users feature
 - [x] Users should be able to register;
 - [x] Passwords must be encrypted;
-- [ ] Backend should be able to authenticate users;
+- [x] Backend should be able to authenticate users;
 - [ ] Users should be able to manage their profiles;
 - [ ] Users should be able to delete their accounts;
 
