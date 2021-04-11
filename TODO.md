@@ -14,7 +14,7 @@
 
 # Next Feature: Users and Quizzes modules integration
 - [ ] Users should be able to create quizzes;
-- [ ] Users should be able to generate a sharable;
+- [ ] Users should be able to generate a sharable link;
 
 # Others chores
 - [ ] Implemente Tsyringe for dependency injection;
