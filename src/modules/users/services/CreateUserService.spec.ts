@@ -1,5 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import { validate } from 'uuid';
+import { UserBuilder } from '@tests/builders/UserBuilder';
 import { User } from '../infra/typeorm/entities/User';
 import { FakeHashProvider } from '../containers/providers/HashProvider/fakes/FakeHashProvider';
 import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
@@ -19,35 +20,24 @@ describe('CreateUser', () => {
   it('Should be able to create a user', async () => {
     const generateHash = jest.spyOn(hashProvider, 'generate');
 
-    const user = await createUserService.execute({
-      name: 'john doe',
-      email: 'johndoe@example.com',
-      password: '123456',
-    });
+    const userData = UserBuilder.aUser().build();
+    const user = await createUserService.execute(userData);
 
     expect(user).toBeInstanceOf(User);
     expect(user.id).not.toBeUndefined();
     expect(validate(user.id)).toBeTruthy();
-    expect(user.name).toEqual('john doe');
-    expect(user.email).toEqual('johndoe@example.com');
-    expect(generateHash).toBeCalledWith('123456');
+    expect(user.name).toEqual(userData.name);
+    expect(user.email).toEqual(userData.email);
+    expect(generateHash).toBeCalledWith(userData.password);
   });
 
   it('Should fail if email is already in use', async () => {
-    const email = 'johndoe@example.com';
+    const userData = UserBuilder.aUser().build();
 
-    await usersRepository.create({
-      name: 'john doe',
-      email,
-      password: '123456',
-    });
+    await usersRepository.create(userData);
 
-    await expect(
-      createUserService.execute({
-        name: 'john does',
-        email,
-        password: '123456',
-      }),
-    ).rejects.toBeInstanceOf(AppError);
+    await expect(createUserService.execute(userData)).rejects.toBeInstanceOf(
+      AppError,
+    );
   });
 });

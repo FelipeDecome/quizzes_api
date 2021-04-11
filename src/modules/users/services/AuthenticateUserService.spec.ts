@@ -2,6 +2,7 @@ import { verify } from 'jsonwebtoken';
 import { authConfig } from '@config/auth';
 
 import AppError from '@shared/errors/AppError';
+import { UserBuilder } from '@tests/builders/UserBuilder';
 import { User } from '../infra/typeorm/entities/User';
 import { AuthenticateUserService } from './AuthenticateUserService';
 import { FakeHashProvider } from '../containers/providers/HashProvider/fakes/FakeHashProvider';
@@ -22,15 +23,13 @@ describe('AuthenticateUser', () => {
   });
 
   it('Should be able to authenticate user', async () => {
-    await usersRepository.create({
-      name: 'johndoe',
-      email: 'johndoe@example.com',
-      password: '123456',
-    });
+    const userData = UserBuilder.aUser().build();
+
+    await usersRepository.create(userData);
 
     const response = await authenticateUserService.execute({
-      email: 'johndoe@example.com',
-      password: '123456',
+      email: userData.email,
+      password: userData.password,
     });
 
     expect(response.user).toBeInstanceOf(User);
@@ -39,19 +38,28 @@ describe('AuthenticateUser', () => {
   });
 
   it('Should fail if user does not exists', async () => {
+    const userData = UserBuilder.aUser().build();
+
     await expect(
       authenticateUserService.execute({
-        email: 'non-existent-user',
-        password: '123456',
+        email: userData.email,
+        password: userData.password,
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('Should fail if password is incorrect', async () => {
+  it('Should fail if password or email is incorrect', async () => {
+    const userData = UserBuilder.aUser().build();
+    const userDataWithWrongPassword = UserBuilder.aUser()
+      .withWrongPassword()
+      .build();
+
+    await usersRepository.create(userData);
+
     await expect(
       authenticateUserService.execute({
-        email: 'johndoe@example.com',
-        password: 'wrong_password',
+        email: userDataWithWrongPassword.email,
+        password: userDataWithWrongPassword.password,
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

@@ -20,10 +20,12 @@
 - [ ] Users should be able to generate a sharable link;
 
 # Others chores
+- [x] Wrap the error handling logic from the app.ts to a middleware;
 - [ ] Implement Tsyringe for dependency injection;
 - - [x] Users;
 - - [ ] Quizzes;
-- [ ] Make the code better;
 - [ ] Simplify tests using Builder pattern;
+- - [x] Users;
+- - [ ] Quizzes;
+- [ ] Make the code better;
 - [ ] Create new Errors classes and improve error handling;
-- [x] Wrap the error handling logic from the app.ts to a middleware;
