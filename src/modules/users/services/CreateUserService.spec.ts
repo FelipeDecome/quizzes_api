@@ -1,7 +1,7 @@
 import AppError from '@shared/errors/AppError';
 import { validate } from 'uuid';
 import { User } from '../infra/typeorm/entities/User';
-import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvider';
+import { FakeHashProvider } from '../containers/providers/HashProvider/fakes/FakeHashProvider';
 import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
 import { CreateUserService } from './CreateUserService';
 

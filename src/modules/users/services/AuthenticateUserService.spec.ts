@@ -4,7 +4,7 @@ import { authConfig } from '@config/auth';
 import AppError from '@shared/errors/AppError';
 import { User } from '../infra/typeorm/entities/User';
 import { AuthenticateUserService } from './AuthenticateUserService';
-import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvider';
+import { FakeHashProvider } from '../containers/providers/HashProvider/fakes/FakeHashProvider';
 import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
 
 let hashProvider: FakeHashProvider;

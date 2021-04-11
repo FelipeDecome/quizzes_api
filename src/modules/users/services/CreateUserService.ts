@@ -1,7 +1,9 @@
+import { inject, injectable } from 'tsyringe';
+
 import AppError from '@shared/errors/AppError';
 import { IService } from '@shared/models/IService';
 import { IUser } from '../entities/IUser';
-import { IHashProvider } from '../providers/HashProvider/models/IHashProvider';
+import { IHashProvider } from '../containers/providers/HashProvider/models/IHashProvider';
 import { IUsersRepository } from '../repositories/IUsersRepository';
 
 interface IRequest {
@@ -10,9 +12,13 @@ interface IRequest {
   password: string;
 }
 
+@injectable()
 class CreateUserService implements IService<IRequest, IUser> {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 
