@@ -1,5 +1,5 @@
 # Important Fixes
-- [ ] Password must not be returned to client;
+- [x] Password must not be returned to client;
 
 # Requiriments of the users feature
 - [x] Users should be able to register;
@@ -26,3 +26,4 @@
 - [ ] Make the code better;
 - [ ] Simplify tests using Builder pattern;
 - [ ] Create new Errors classes and improve error handling;
+- [x] Wrap the error handling logic from the app.ts to a middleware;
