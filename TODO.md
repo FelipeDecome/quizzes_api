@@ -6,7 +6,7 @@
 - [x] Passwords must be encrypted;
 - [x] Backend should be able to authenticate users;
 - [ ] Users should be able to manage their profiles;
-- - [ ] Create authentication middleware;
+- - [x] Create authentication middleware;
 - [ ] Users should be able to delete their accounts;
 
 # Needs funcionalities to be implemented before been developed.
