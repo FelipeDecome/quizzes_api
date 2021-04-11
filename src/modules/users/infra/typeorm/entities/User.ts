@@ -7,6 +7,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { TUserResponse } from '@modules/users/views/TUserResponse';
 
 @Entity('users')
 class User implements IUser {
@@ -30,6 +31,14 @@ class User implements IUser {
 
   constructor() {
     if (!this.id) this.id = uuid();
+  }
+
+  public userToClient(): TUserResponse {
+    const { password, ...rest } = this;
+
+    return {
+      ...rest,
+    };
   }
 }
 

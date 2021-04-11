@@ -16,7 +16,7 @@ class UsersController implements IController {
       password,
     });
 
-    return response.status(201).json(user);
+    return response.status(201).json(user.userToClient());
   }
 }
 

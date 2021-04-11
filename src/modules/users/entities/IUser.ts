@@ -1,3 +1,5 @@
+import { TUserResponse } from '../views/TUserResponse';
+
 interface IUser {
   id: string;
   name: string;
@@ -5,6 +7,7 @@ interface IUser {
   password: string;
   created_at: Date;
   updated_at: Date;
+  userToClient(): TUserResponse;
 }
 
 export { IUser };
