@@ -1,4 +1,4 @@
-import { TUserResponse } from '../views/TUserResponse';
+import { TUserResponse } from '../adapters/TUserResponse';
 
 interface IUser {
   id: string;

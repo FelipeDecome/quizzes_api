@@ -7,7 +7,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { TUserResponse } from '@modules/users/views/TUserResponse';
+import { TUserResponse } from '@modules/users/adapters/TUserResponse';
 
 @Entity('users')
 class User implements IUser {
