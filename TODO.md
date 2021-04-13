@@ -5,13 +5,15 @@
 - [x] Users should be able to register;
 - [x] Passwords must be encrypted;
 - [x] Backend should be able to authenticate users;
+- [ ] Users should be able to recover their passwords;
 - [ ] Users should be able to manage their profiles;
 - - [x] Create authentication middleware;
 - [ ] Users should be able to delete their accounts;
 
 # Needs funcionalities to be implemented before been developed.
 - [ ] Users should be able to verify their email;
-- - [ ] Needs email module;
+- - [x] Needs email module;
+- - [x] Needs tokens;
 - [ ] Implements users Avatar;
 - - [ ] Needs a way to upload image;
 
@@ -29,3 +31,4 @@
 - - [ ] Quizzes;
 - [ ] Make the code better;
 - [ ] Create new Errors classes and improve error handling;
+- [ ] Remove typeorm entities dependency on the tests mocks;
