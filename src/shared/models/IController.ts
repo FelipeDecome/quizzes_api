@@ -11,6 +11,7 @@ interface IController {
   index?: TControllerMethods;
   show?: TControllerMethods;
   update?: TControllerMethods;
+  patch?: TControllerMethods;
 }
 
 export { IController };

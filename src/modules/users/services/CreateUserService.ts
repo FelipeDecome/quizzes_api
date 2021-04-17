@@ -49,7 +49,7 @@ class CreateUserService implements IService<IRequest, IUser> {
       type: 'email_confirmation',
     });
 
-    const link = `${process.env.APP_WEB_URL}/email-confirmation?token=${token.token}`;
+    const link = `${process.env.APP_WEB_URL}/email-confirmation/${token.token}`;
 
     await this.mailProvider.sendMail({
       to: { email, name },
@@ -60,7 +60,7 @@ class CreateUserService implements IService<IRequest, IUser> {
           '..',
           'views',
           'handlebars',
-          'create_user.hbs',
+          'email_confirmation.hbs',
         ),
         variables: {
           name,

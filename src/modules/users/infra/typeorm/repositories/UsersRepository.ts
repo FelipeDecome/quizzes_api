@@ -18,10 +18,18 @@ class UsersRepository implements IUsersRepository {
     return this.ormRepository.save(user);
   }
 
+  public async findById(id: string): Promise<IUser | undefined> {
+    return this.ormRepository.findOne(id);
+  }
+
   public async findByEmail(email: string): Promise<IUser | undefined> {
     return this.ormRepository.findOne({
       email,
     });
+  }
+
+  public async save(user: IUser): Promise<IUser> {
+    return this.ormRepository.save(user);
   }
 }
 

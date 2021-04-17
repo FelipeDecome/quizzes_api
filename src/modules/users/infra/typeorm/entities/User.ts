@@ -20,6 +20,9 @@ class User implements IUser {
   @Column()
   email: string;
 
+  @Column('boolean')
+  email_verified: boolean;
+
   @Column()
   password: string;
 
