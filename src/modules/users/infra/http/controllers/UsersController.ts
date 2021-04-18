@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import { CreateUserService } from '@modules/users/services/CreateUserService';
 import { IController } from '@shared/models/IController';
+import { ShowUserProfileService } from '@modules/users/services/ShowUserProfileService';
 
 class UsersController implements IController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -17,6 +18,15 @@ class UsersController implements IController {
     });
 
     return response.status(201).json(user.userToClient());
+  }
+
+  public async show(request: Request, response: Response): Promise<Response> {
+    const { id } = request.user;
+
+    const showUserProfileService = container.resolve(ShowUserProfileService);
+    const user = await showUserProfileService.execute({ id });
+
+    return response.json({ user: user.userToClient() });
   }
 }
 
